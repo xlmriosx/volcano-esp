@@ -8,17 +8,22 @@
 ![ESP UI](https://via.placeholder.com/500x300.png)
 *ESP UI displaying dynamic elements and settings.*
 
-
 ## 📚 **Project Description**
 
 **Volcano's ESP** is a personal integrative project developed for educational purposes to learn and deepen knowledge in advanced **C++** and **reverse engineering** concepts. The main goal of this project is to create an **overlay** for a game using techniques such as **memory reading**, **process scanning**, **offsets**, and **rendering** with **DirectX 11**. Key concepts implemented during development include:
 
 - **Process Scanning**: Scanning and interacting with running processes, such as **cs2.exe**, to retrieve information like **PID**, **loaded DLLs**, etc., using the **Windows API**.
+
 - **Memory Reading**: Reading and modifying the memory of a running process to retrieve real-time information.
+
 - **Offsets**: Using specific offsets to access information within a game's memory.
+
 - **Overlays and Rendering**: Using DirectX 11 to create an overlay that displays relevant information about players in the game.
+
 - **Reverse Engineering**: Understanding how a game’s internal processes work to extract information without direct access.
+
 - **Linear Algebra**: Implementing the **view matrix** and coordinate transformations to project 3D world positions to 2D screen coordinates.
+
 - **Object-Oriented Programming**: The project is implemented using **C++** and **object-oriented programming** concepts to efficiently organize code.
 
 ⚠️ **Important**: This project was developed **only for educational purposes**. It is not designed to be **undetectable** nor intended for use on servers with protection systems like **VAC** (Valve Anti-Cheat). **It is not recommended for use in online games or to cheat in secure servers.**
@@ -68,6 +73,8 @@ The **Volcano's ESP** overlay offers several useful features for analyzing the g
 
 ### External ESP:
 This project is an **external ESP**, meaning it does not inject itself into the game's memory or modify it. Instead, the ESP **reads the game's memory** to gather information about players (such as health, position, team, etc.) using **offsets**. This information is then used to render the overlay on top of the game using **DirectX 11**. This approach makes the ESP safer to use, as it does not require direct modification or interaction with the game's memory.
+
+**Important**: The overlay **only works in Windowed or Borderless mode**. This is because external overlays like this one cannot interact with the game in **Exclusive Fullscreen** mode.
 
 ### Overlay:
 An **overlay** is a screen that sits on top of the game, displaying additional information without interfering with the game's flow. In this project, **DirectX 11** is used to create a transparent window that is placed over the game. This window continuously renders the ESP (information about players) while the game is running.
