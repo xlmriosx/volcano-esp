@@ -3,13 +3,10 @@
 ## 🖼️ **Showcase - Screenshots**
 
 ![ESP](https://github.com/MaxPriani/volcano-esp/blob/main/src/assets/images/1.png?raw=true)
-*ESP configuration panel displaying options for team health, enemy health, and player names.*
 
 ![ESP](https://github.com/MaxPriani/volcano-esp/blob/main/src/assets/images/2.png?raw=true)
-*ESP UI with dynamic settings such as health, distance, and box thickness.*
 
 ![ESP](https://github.com/MaxPriani/volcano-esp/blob/main/src/assets/images/3.png?raw=true)
-*ESP overlay showing enemies and distance information.*
 
 ## 📚 **Project Description**
 
