@@ -90,7 +90,3 @@ Using the **DirectX 11 API**, the project renders the player boxes, names, healt
 
 ### Graphical Interface with ImGui:
 **ImGui** is used to create an interactive graphical interface that allows the user to adjust the ESP settings in real time.
-
-## 📄 **License**
-
-This project is for **educational use**. The code provided here should not be used to cheat in games or violate the terms of service of online games.
