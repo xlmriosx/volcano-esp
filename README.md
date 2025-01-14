@@ -37,8 +37,9 @@ To run this project on your machine, ensure that you have the following requirem
 
 1. **Clone the repository** to your local machine:
    ```bash
-   git clone https://github.com/yourusername/volcano-esp.git
-
+   git clone https://github.com/MaxPriani/volcano-esp.git
+   ```
+   
 2. **Open the project in Visual Studio**:
    - Open **Visual Studio** and select `File > Open > Project/Solution`.
    - Navigate to the directory where you cloned the repository and open the `.sln` solution file.
