@@ -1,4 +1,5 @@
 #include "Memory.h"
+#include <string> // For std::wstring
 
 // Constructor that finds the PID and opens a handle
 Memory::Memory(const wchar_t* processName) noexcept {
@@ -8,12 +9,15 @@ Memory::Memory(const wchar_t* processName) noexcept {
 
     const HANDLE snapShot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
-    // Iterate through all processes in the system snapshot
     bool processFound = false;
     while (::Process32Next(snapShot, &entry)) {
 
-        // If process is found, store its ID and get handle with full access
-        if (_wcsicmp(processName, entry.szExeFile) == 0) {
+        // Convert entry.szExeFile (char) to a wide string (wchar_t)
+        wchar_t exeFileW[260]; // Match the size of entry.szExeFile
+        ::MultiByteToWideChar(CP_ACP, 0, entry.szExeFile, -1, exeFileW, 260);
+
+        // Compare the wide-character strings
+        if (_wcsicmp(processName, exeFileW) == 0) {
             processId = entry.th32ProcessID;
             processFound = true;
 
@@ -23,7 +27,6 @@ Memory::Memory(const wchar_t* processName) noexcept {
         }
     }
 
-    // Free handle
     if (snapShot)
         ::CloseHandle(snapShot);
 }
@@ -45,8 +48,12 @@ const std::uintptr_t Memory::GetModuleAddress(const wchar_t* moduleName) const n
     std::uintptr_t result = 0;
     while (::Module32Next(snapShot, &entry)) {
 
-        // Compare module names and store base address if matched
-        if (_wcsicmp(moduleName, entry.szModule) == 0) {
+        // Convert entry.szModule (char) to a wide string (wchar_t)
+        wchar_t moduleW[256]; // Match the size of entry.szModule
+        ::MultiByteToWideChar(CP_ACP, 0, entry.szModule, -1, moduleW, 256);
+
+        // Compare the wide-character strings
+        if (_wcsicmp(moduleName, moduleW) == 0) {
             result = reinterpret_cast<std::uintptr_t>(entry.modBaseAddr);
             break;
         }
