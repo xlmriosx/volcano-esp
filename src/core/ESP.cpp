@@ -15,15 +15,26 @@ void ESP::UpdateGameState() {
     gameState.localTeam = memory.Read<int>(gameState.localPlayer + offsets::client_dll::m_iTeamNum);
 }
 
-void ESP::DrawESPBox(const ImVec2& playerScreenPos, const ImVec2& playerScreenHead, ImU32 color) {
+void ESP::DrawESPBox(const ImVec2& playerScreenPos, const ImVec2& playerScreenHead, ImU32 color, int playerHealth) {
 
     float boxHeight = playerScreenPos.y - playerScreenHead.y;
     float boxWidth = boxHeight / 2.8f;
 
+    // Calculate the color based on health percentage
+    float healthPercentage = static_cast<float>(playerHealth) / 100.0f;
+
+    // Interpolate between green and red
+    int red = static_cast<int>((1.0f - healthPercentage) * 255);
+    int green = static_cast<int>(healthPercentage * 255);
+    int blue = 0; // Keep blue constant as 0
+
+    // Assign the interpolated color
+    config->healthColor = IM_COL32(red, green, blue, 255);
+
     ImGui::GetBackgroundDrawList()->AddRect(
         ImVec2(playerScreenHead.x - boxWidth / 2, playerScreenHead.y),
         ImVec2(playerScreenHead.x + boxWidth / 2, playerScreenPos.y),
-        color,
+        config->healthColor,
         config->boxRoundness,
         0,
         config->boxThickness
@@ -42,19 +53,16 @@ void ESP::DrawPlayerHealth(const ImVec2& playerScreenPos, int playerHealth, int 
     if (firstCondition || secondCondition) {
         std::string healthText = std::to_string(playerHealth) + "HP";
 
-        // Health color based on value
-        if (playerHealth > 80) {
-            config->healthColor = IM_COL32(0, 255, 0, 255);      // HP > 80 == Green
-        }
-        else if (playerHealth > 50) {
-            config->healthColor = IM_COL32(255, 255, 0, 255);    // HP > 50 == Yellow
-        }
-        else if (playerHealth > 20) {
-            config->healthColor = IM_COL32(255, 165, 0, 255);    // HP > 20 == Orange
-        }
-        else {
-            config->healthColor = IM_COL32(255, 0, 0, 255);      // HP <= 20 == Red
-        }
+        // Calculate the color based on health percentage
+        float healthPercentage = static_cast<float>(playerHealth) / 100.0f;
+
+        // Interpolate between green and red
+        int red = static_cast<int>((1.0f - healthPercentage) * 255);
+        int green = static_cast<int>(healthPercentage * 255);
+        int blue = 0; // Keep blue constant as 0
+
+        // Assign the interpolated color
+        config->healthColor = IM_COL32(red, green, blue, 255);
 
         // Draw health text
         ImGui::GetBackgroundDrawList()->AddText(
@@ -174,7 +182,7 @@ void ESP::RenderESP() {
 
         // Transform both the player's world position and head into screen coordinates
         if ((wts.transform(playerWorldPos, playerScreenPos)) && (wts.transform(playerWorldHead, playerScreenHead))) {
-            DrawESPBox(playerScreenPos, playerScreenHead, color);
+            DrawESPBox(playerScreenPos, playerScreenHead, color, playerHealth);
             DrawPlayerHealth(playerScreenPos, playerHealth, playerTeam, config->healthTextSize);
             DrawPlayerDistance(playerScreenPos, playerDistance, config->distanceTextSize);
             DrawPlayerNames(playerScreenPos, playerScreenHead, playerName, config->playerNamesTextSize);

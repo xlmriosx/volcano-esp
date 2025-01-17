@@ -132,7 +132,7 @@ void Render::InitializeUI(HINSTANCE instance) {
 
 void Render::RenderUI() {
     ImGui::SetNextWindowSize(ImVec2(380, 220), ImGuiCond_Always);
-    if (ImGui::Begin("Settings |         Volcano's ESP         | by flosur", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize)) {
+    if (ImGui::Begin("Settings | Volcano's ESP | by flosur - co. xlmriosx", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize)) {
         if (ImGui::BeginTabBar("##ESPTabs")) {
 
 

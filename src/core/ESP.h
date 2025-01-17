@@ -38,7 +38,7 @@ public:
 
 public:
     void RenderESP();
-    void DrawESPBox(const ImVec2& playerScreenPos, const ImVec2& playerScreenHead, ImU32 color);
+    void DrawESPBox(const ImVec2& playerScreenPos, const ImVec2& playerScreenHead, ImU32 color, int playerHealth);
     void UpdateGameState();
     void HandleUIToggle();
     void DrawPlayerHealth(const ImVec2& playerScreenPos, int health, int team, float healthTextSize);
