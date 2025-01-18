@@ -55,7 +55,7 @@ jobs:
           release_name: Release ${{ env.version }} # Use the dynamic tag for the release name
           body: |
             **What's New:**
-            - ${{ github.event.commits }}
+            - ${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
 
