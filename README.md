@@ -1,3 +1,5 @@
+![workflow](https://github.com/xlmriosx/volcano-esp/actions/workflows/build-tag-publish.yaml/badge.svg)
+
 # 🌋 **Volcano's ESP** 🔥
 
 ## 🖼️ **Showcase - Screenshots**
